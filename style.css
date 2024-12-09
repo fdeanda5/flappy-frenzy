@@ -1,9 +1,11 @@
+/* Global reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Body and HTML */
 body, html {
     height: 100%;
     background-color: #87CEEB; /* Sky blue background */
@@ -13,18 +15,29 @@ body, html {
     font-family: 'Arial', sans-serif;
 }
 
+/* Game container */
 #game-container {
     position: relative;
-    width: 500px;
-    height: 600px;
+    width: 100%;  /* Make the container width 100% of the screen */
+    height: 100%; /* Make the container height 100% of the screen */
+    max-width: 500px;  /* Maximum width of the game container */
+    max-height: 600px; /* Maximum height of the game container */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column; /* Make sure score is above the game canvas */
+    justify-content: flex-start;
+    align-items: center;
 }
 
+/* Canvas styling */
 #gameCanvas {
-    background: #87CEEB;
+    background: #87CEEB; /* Sky blue */
     display: block;
-    margin: 0 auto;
+    width: 100%; /* Canvas takes full width of the container */
+    height: auto; /* Maintain aspect ratio */
 }
 
+/* Score and High Score Container */
 #score-container {
     position: absolute;
     top: 10px;
@@ -34,6 +47,7 @@ body, html {
     z-index: 1;
 }
 
+/* Game Over Screen */
 #game-over {
     position: absolute;
     top: 50%;
@@ -41,8 +55,10 @@ body, html {
     transform: translate(-50%, -50%);
     text-align: center;
     color: white;
+    font-size: 24px;
 }
 
+/* Button styling */
 button {
     background-color: #ff6347;
     border: none;
@@ -53,10 +69,91 @@ button {
     border-radius: 5px;
 }
 
+/* Hidden class for game-over screen */
 .hidden {
     display: none;
 }
 
+/* High Score styling */
 #high-score {
     font-size: 16px;
+}
+
+/* Responsive Design */
+
+/* Small screens (mobile phones) */
+@media screen and (max-width: 600px) {
+    #game-container {
+        width: 100%;
+        height: 100%;
+        padding: 10px; /* Add some padding on smaller screens */
+    }
+    
+    #gameCanvas {
+        width: 100%; /* Full width on small screens */
+        height: auto; /* Maintain aspect ratio */
+    }
+
+    #score-container {
+        font-size: 18px; /* Smaller font size for score on mobile */
+        top: 10px;
+        left: 10px;
+    }
+
+    #game-over {
+        font-size: 20px; /* Adjust font size for game over on mobile */
+    }
+
+    button {
+        padding: 12px 25px; /* Bigger button for touch screen */
+        font-size: 20px;
+    }
+}
+
+/* Medium screens (tablets) */
+@media screen and (max-width: 1024px) and (min-width: 601px) {
+    #game-container {
+        width: 80%;  /* Set a max width of 80% for tablets */
+        height: auto;
+    }
+
+    #gameCanvas {
+        width: 100%;
+        height: auto;  /* Keep the aspect ratio on tablets */
+    }
+
+    #score-container {
+        font-size: 18px; /* Slightly smaller score font on tablets */
+    }
+
+    #game-over {
+        font-size: 22px;
+    }
+
+    button {
+        padding: 12px 25px;
+        font-size: 18px;
+    }
+}
+
+/* Large screens (desktops) */
+@media screen and (min-width: 1025px) {
+    #game-container {
+        width: 500px; /* Keep the game container at the max width */
+        height: 600px; /* Keep the height fixed for larger screens */
+    }
+
+    #score-container {
+        font-size: 20px;
+    }
+
+    #gameCanvas {
+        width: 100%;
+        height: auto; /* Maintain aspect ratio */
+    }
+
+    button {
+        padding: 15px 30px; /* Larger button on desktop */
+        font-size: 20px;
+    }
 }
